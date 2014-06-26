@@ -25,20 +25,20 @@ class NbackGame
 		if @current_round.round_attributes[attribute.to_sym] == @nback_round.round_attributes[attribute.to_sym] 
 			case attribute
 			when 'color'
-				@current_round.round_attributes.color_correct = true
+				@current_round.round_attributes[:color_correct] = true
 			when 'sound'
-				@current_round.round_attributes.sound_correct = true
+				@current_round.round_attributes[:sound_correct] = true
 			when 'position'
-				@current_round.round_attributes.position_correct = true
+				@current_round.round_attributes[:position_correct] = true
 			end
 		else
 			case attribute
 			when 'color'
-				@current_round.round_attributes.color_correct = false
+				@current_round.round_attributes[:color_correct] = false
 			when 'sound'
-				@current_round.round_attributes.sound_correct = false
+				@current_round.round_attributes[:sound_correct] = false
 			when 'position'
-				@current_round.round_attributes.position_correct = false
+				@current_round.round_attributes[:position_correct] = false
 			end
 		end
 	end
