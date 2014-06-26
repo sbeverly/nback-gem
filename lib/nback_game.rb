@@ -43,28 +43,17 @@ class NbackGame
 		end
 	end
 
-	def evaluate_non_response
-		if @current_round.round_attributes[:color_correct] == nil
-			if @current_round.round_attributes[:color] != @nback_round.round_attributes[:color]
-				@current_round.round_attributes[:color_correct] = true
-			else
-			@current_round.round_attributes[:color_correct] = false
-			end
-		end
+	def evaluate_non_response(current_round)
+		@current_round = @rounds[current_round]
+		@nback_round = @rounds[current_round - @n]
 
-		if @current_round.round_attributes[:sound_correct] == nil
-			if @current_round.round_attributes[:sound] != @nback_round.round_attributes[:sound]
-				@current_round.round_attributes[:sound_correct] = true
-			else
-			@current_round.round_attributes[:sound_correct] = false
-			end
-		end
-
-		if @current_round.round_attributes[:position_correct] == nil
-			if @current_round.round_attributes[:position] != @nback_round.round_attributes[:color]
-				@current_round.round_attributes[:position_correct] = true
-			else
-			@current_round.round_attributes[:position_correct] = false
+		@round_attributes.each_key |attribute| do
+			if @current_round.round_attributes["#{attribute}_correct".to_sym] == nil
+				if @current_round.round_attributes[attribute.to_sym] != @nback_round.round_attributes[attribute.to_sym]
+					@current_round.round_attributes["#{attribute}_correct".to_sym] = true
+				else
+				@current_round.round_attributes["#{attribute}_correct".to_sym] = false
+				end
 			end
 		end
 	end
