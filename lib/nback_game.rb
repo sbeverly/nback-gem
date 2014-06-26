@@ -62,9 +62,11 @@ end
 class Round
 	def initialize(round_number, round_attributes)
 		@round_number = round_number
-		@round_attributes = { color: round_attributes[:color].sample, color_correct: nil 
-													sound: round_attributes[:sound].sample, sound_correct: nil
-													position: round_attributes[:position].sample, position_correct: nil
+		@round_attributes = { color: round_attributes[:colors].sample, color_correct: nil 
+													sound: round_attributes[:sounds].sample, sound_correct: nil
+													position: round_attributes[:positions].sample, position_correct: nil
 												}
 	end
 end
+
+
