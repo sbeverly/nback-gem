@@ -16,15 +16,38 @@ class NbackGame
 		@current_round = @rounds[current_round]
 		@nback_round = @rounds[current_round - @n]
 
-		@current_round.attribute == @nback_round.attribute ? true : false
+		if @current_round.round_attributes[attribute.to_sym] == @nback_round.round_attributes[attribute.to_sym] 
+			case attribute
+			when 'color'
+				@current_round.round_attributes.color_correct = true
+			when 'sound'
+				@current_round.round_attributes.sound_correct = true
+			when 'position'
+				@current_round.round_attributes.position_correct = true
+			end
+		else
+			case attribute
+			when 'color'
+				@current_round.round_attributes.color_correct = false
+			when 'sound'
+				@current_round.round_attributes.sound_correct = false
+			when 'position'
+				@current_round.round_attributes.position_correct = false
+			end
+		end
+	end
+
+	def evaluate_non_response
+	
 	end
 end
 
 class Round
 	def initialize(round_number, round_attributes)
 		@round_number = round_number
-		@color = round_attributes[:color].sample
-		@sound = round_attributes[:sound].sample
-		@position = round_attributes[:position].sample
+		@round_attributes = { color: round_attributes[:color].sample, color_correct: nil 
+													sound: round_attributes[:sound].sample, sound_correct: nil
+													position: round_attributes[:position].sample, position_correct: nil
+												}
 	end
 end
