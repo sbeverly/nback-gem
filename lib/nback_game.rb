@@ -2,6 +2,12 @@ class NbackGame
 	def initialize(n, game_mode, round_attributes)
 		@n = n
 		@game_mode = game_mode
+		
+		# Hash containing colors, sounds and positions, i.e. { colors: ['blue, 'red'], 
+		#																											 sounds: ['/sounds/cat.mp3', '/sounds/dog.mp3']
+		# 																										 positions: [1, 2, 3, 4]
+		# 																										}
+
 		@round_attributes = round_attributes
 		@rounds = []
 	end
