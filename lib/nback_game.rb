@@ -14,7 +14,9 @@ class NbackGame
 
 	def generate_rounds
 		@n + 20.times do
-			@rounds << Round.new(round_number, @round_attributes)
+			@round_number = 0
+			@rounds << Round.new(@round_number, @round_attributes)
+			@round_number += 1
 		end
 	end
 
@@ -47,7 +49,7 @@ class NbackGame
 		@current_round = @rounds[current_round]
 		@nback_round = @rounds[current_round - @n]
 
-		@round_attributes.each_key |attribute| do
+		@round_attributes.each_key do |attribute|
 			if @current_round.round_attributes["#{attribute}_correct".to_sym] == nil
 				if @current_round.round_attributes[attribute.to_sym] != @nback_round.round_attributes[attribute.to_sym]
 					@current_round.round_attributes["#{attribute}_correct".to_sym] = true
@@ -62,11 +64,18 @@ end
 class Round
 	def initialize(round_number, round_attributes)
 		@round_number = round_number
-		@round_attributes = { color: round_attributes[:colors].sample, color_correct: nil 
-													sound: round_attributes[:sounds].sample, sound_correct: nil
+		@round_attributes = { color: round_attributes[:colors].sample, color_correct: nil, 
+													sound: round_attributes[:sounds].sample, sound_correct: nil,
 													position: round_attributes[:positions].sample, position_correct: nil
 												}
 	end
 end
 
+
+
+test_game = NbackGame.new(2, 'single', { colors: ["blue", "red", "blue", ], sounds: ["/sounds/cat.mp3", "/sounds/dog.mp3", "/sounds/cat.mp3"], positions: [1, 2, 1, 4]})
+
+test_game.generate_rounds
+
+test_game.evaluate_users_guess(2, 'color') == true
 
