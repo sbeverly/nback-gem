@@ -17,6 +17,7 @@ end
 class Round
 	def initialize(round_number, round_attributes)
 		@round_number = round_number
+		@round_attributes = round_attributes
 		@color = select_color(round_attributes[:color])
 		@sound = select_sound(round_attributes[:sound])
 		@position = select_position(round_attributes[:position])
