@@ -11,8 +11,14 @@ class NbackGame
 			@rounds << Round.new(round_number, @round_attributes)
 		end
 	end
-end
 
+	def evaluate_users_guess(current_round, attribute)
+		@current_round = @rounds[current_round]
+		@nback_round = @rounds[current_round - @n]
+
+		@current_round.attribute == @nback_round.attribute ? true : false
+	end
+end
 
 class Round
 	def initialize(round_number, round_attributes)
