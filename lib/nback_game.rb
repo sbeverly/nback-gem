@@ -24,6 +24,9 @@ class NbackGame
 		@current_round = @rounds[current_round]
 		@nback_round = @rounds[current_round - @n]
 
+		puts @current_round.round_attributes[:color]
+		puts @nback_round.round_attributes[:color]
+
 		if @current_round.round_attributes[attribute.to_sym] == @nback_round.round_attributes[attribute.to_sym] 
 			case attribute
 			when 'color'
@@ -58,24 +61,33 @@ class NbackGame
 				end
 			end
 		end
+		return @current_round
 	end
 end
 
 class Round
+	attr_accessor :round_number, :round_attributes
+
 	def initialize(round_number, round_attributes)
 		@round_number = round_number
-		@round_attributes = { color: round_attributes[:colors].sample, color_correct: nil, 
-													sound: round_attributes[:sounds].sample, sound_correct: nil,
-													position: round_attributes[:positions].sample, position_correct: nil
+		@round_attributes = { color: round_attributes[:color].sample, color_correct: nil, 
+													sound: round_attributes[:sound].sample, sound_correct: nil,
+													position: round_attributes[:position].sample, position_correct: nil
 												}
+		p @round_attributes[:color]
 	end
 end
 
 
 
-test_game = NbackGame.new(2, 'single', { colors: ["blue", "red", "blue", ], sounds: ["/sounds/cat.mp3", "/sounds/dog.mp3", "/sounds/cat.mp3"], positions: [1, 2, 1, 4]})
+test_game = NbackGame.new(2, 'single', { color: ["blue", "red", "green", "orange"], sound: ["/sounds/cat.mp3", "/sounds/dog.mp3", "/sounds/cat.mp3"], position: [1, 2, 1, 4]})
 
 test_game.generate_rounds
 
-test_game.evaluate_users_guess(2, 'color') == true
+puts test_game.evaluate_users_guess(2, 'color')
+
+p test_game.evaluate_non_response(3)
+
+
+
 
