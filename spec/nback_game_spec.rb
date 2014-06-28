@@ -16,6 +16,7 @@ describe "NBackGame" do
 			end
 
 			expect(@new_game.show_round_attributes(@round)[:color]) ===  @new_game.show_round_attributes(@round - 2)[:color]
+			expect(@new_game.show_round_attributes(@round)[:color_correct]).to be(true)
 		end
 	end
 end
