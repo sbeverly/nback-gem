@@ -15,8 +15,8 @@ class NbackGame
 	end
 
 	def evaluate_users_guess(current_round, attribute)
-		@current_round = @rounds[current_round]
-		@nback_round = @rounds[current_round - @n]
+		@current_round = @rounds[current_round - 1]
+		@nback_round = @rounds[current_round - 1 - @n]
 
 		puts @current_round.round_attributes[:color]
 		puts @nback_round.round_attributes[:color]
@@ -43,8 +43,8 @@ class NbackGame
 	end
 
 	def evaluate_non_response(current_round)
-		@current_round = @rounds[current_round]
-		@nback_round = @rounds[current_round - @n]
+		@current_round = @rounds[current_round - 1]
+		@nback_round = @rounds[current_round - 1 - @n]
 
 		@round_attributes.each_key do |attribute|
 			if @current_round.round_attributes["#{attribute}_correct".to_sym] == nil
@@ -57,6 +57,10 @@ class NbackGame
 		end
 		return @current_round
 	end
+
+	def show_round_attributes(round_number)
+		@rounds[round_number - 1].round_attributes
+	end 
 end
 
 class Round
