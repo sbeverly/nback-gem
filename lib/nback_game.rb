@@ -59,6 +59,7 @@ class NbackGame
 	end
 
 	def show_round_attributes(round_number)
+		puts @rounds[round_number - 1].round_attributes
 		@rounds[round_number - 1].round_attributes
 	end 
 end
@@ -75,7 +76,3 @@ class Round
 		p @round_attributes[:color]
 	end
 end
-
-
-
-
