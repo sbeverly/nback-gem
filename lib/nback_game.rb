@@ -2,12 +2,6 @@ class NbackGame
 	def initialize(n, game_mode, round_attributes)
 		@n = n
 		@game_mode = game_mode
-		
-		# Hash containing colors, sounds and positions, i.e. { colors: ['blue, 'red'], 
-		#																											 sounds: ['/sounds/cat.mp3', '/sounds/dog.mp3']
-		# 																										 positions: [1, 2, 3, 4]
-		# 																										}
-
 		@round_attributes = round_attributes
 		@rounds = []
 	end
@@ -77,16 +71,6 @@ class Round
 		p @round_attributes[:color]
 	end
 end
-
-
-
-test_game = NbackGame.new(2, 'single', { color: ["blue", "red", "green", "orange"], sound: ["/sounds/cat.mp3", "/sounds/dog.mp3", "/sounds/cat.mp3"], position: [1, 2, 1, 4]})
-
-test_game.generate_rounds
-
-puts test_game.evaluate_users_guess(2, 'color')
-
-p test_game.evaluate_non_response(3)
 
 
 
