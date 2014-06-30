@@ -74,32 +74,42 @@ end
 class DataFetcher
 	attr_accessor :round_attributes, :game_data
 
-	def initialize(game_mode)
+	def initialize(game_data, game_mode)
+		@game_data = game_data
 		@game_mode = game_mode
 		@round_attributes = {}
 	end
 
 	def fetch_game_data(game_mode)
+
 	       @colors_array = []
-	       @sounds_arrat = []
+	       @sounds_array = []
 	       @positions_array = [1,2,3,4];
 
 	       @total_stimuli = 4
 	       @stimuli_count = 1
+	       p game_data
 	       while @stimuli_count < @total_stimuli + 1
-	            @colors_array << game_data.colors[@stimuli_count]
-	            @sounds_array << game_data.sounds[@stimuli_count]
+	            @colors_array << game_data[:colors][@stimuli_count]
+	            @sounds_array << game_data[:sounds][@stimuli_count]
 	            @stimuli_count += 1
+	            p @colors_array
 	       end
 
-	        if (gameMode === 'Single') {
-	            return {positions: positionArr}
-	        } else if (gameMode === 'Dual') {
-	            this.soundBuilder.buildSounds(soundArr)
-	            return {positions: positionArr, sounds: soundArr}
-	        } else if (gameMode === 'Triple'){
-	            this.soundBuilder.buildSounds(soundArr)
-	            return {colors: colorArr, sounds: soundArr, positions: positionArr}
-	        }
-	    },
+	    #     if gameMode === 'Single'
+	    #         @round_attributes.positions = @positions_array
+	    #     } else if (gameMode === 'Dual') {
+	    #         this.soundBuilder.buildSounds(soundArr)
+	    #         return {positions: positionArr, sounds: soundArr}
+	    #     } else if (gameMode === 'Triple'){
+	    #         this.soundBuilder.buildSounds(soundArr)
+	    #         return {colors: colorArr, sounds: soundArr, positions: positionArr}
+	    #     }
+	    # },
+	  end
   end
+
+  game_data = {colors: {1 => 'red', 2 => 'green', 3 => 'yellow', 4 => 'orange'}, sounds: game_data = {colors: {1 => 'red', 2 => 'green', 3 => 'yellow', 4 => 'orange'}} }
+  data_fetcher = DataFetcher.new(game_data, 'Single')
+  data_fetcher.fetch_game_data('Single')
+
