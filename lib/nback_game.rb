@@ -1,5 +1,5 @@
 class NbackGame
-	def initialize(n, game_mode, round_attributes)
+	def initialize(n, round_attributes)
 		@n = n
 		@game_mode = game_mode
 		@round_attributes = round_attributes
@@ -65,23 +65,33 @@ class Round
 	def initialize(round_number, round_attributes)
 		@round_number = round_number
 		@round_attributes = { color: round_attributes[:color].sample, color_correct: nil,
-													sound: round_attributes[:sound].sample, sound_correct: nil,
-													position: round_attributes[:position].sample, position_correct: nil
-												}
+								sound: round_attributes[:sound].sample, sound_correct: nil,
+								position: round_attributes[:position].sample, position_correct: nil
+								}
 	end
 end
 
 class DataFetcher
 	attr_accessor :round_attributes, :game_data
 
+	def initialize(game_mode)
+		@game_mode = game_mode
+		@round_attributes = {}
+	end
+
 	def fetch_game_data(game_mode)
-	        @colors_array = []
-	        @sounds_arrat = []
-	        @positions_array = [1,2,3,4];
-	        for (var i = 1; i < 5; i++){
-	            colorArr.push(gameData.colors[i]);
-	            soundArr.push(gameData.sounds[i]);
-	        }
+	       @colors_array = []
+	       @sounds_arrat = []
+	       @positions_array = [1,2,3,4];
+
+	       @total_stimuli = 4
+	       @stimuli_count = 1
+	       while @stimuli_count < @total_stimuli + 1
+	            @colors_array << game_data.colors[@stimuli_count]
+	            @sounds_array << game_data.sounds[@stimuli_count]
+	            @stimuli_count += 1
+	       end
+
 	        if (gameMode === 'Single') {
 	            return {positions: positionArr}
 	        } else if (gameMode === 'Dual') {
