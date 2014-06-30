@@ -1,5 +1,5 @@
 class NbackGame
-	def initialize(n, game_mode, round_attributes)
+	def initialize(n, round_attributes)
 		@n = n
 		@game_mode = game_mode
 		@round_attributes = round_attributes
@@ -19,7 +19,7 @@ class NbackGame
 		@nback_round = @rounds[current_round_number - 1 - @n]
 
 		if current_round_number > @n
-			if @current_round.round_attributes[attribute.to_sym] == @nback_round.round_attributes[attribute.to_sym] 
+			if @current_round.round_attributes[attribute.to_sym] == @nback_round.round_attributes[attribute.to_sym]
 				@current_round.round_attributes["#{attribute}_correct".to_sym] = true
 			else
 				@current_round.round_attributes["#{attribute}_correct".to_sym] = false
@@ -56,7 +56,7 @@ class NbackGame
 
 	def show_round_attributes(round_number)
 		@rounds[round_number - 1].round_attributes
-	end 
+	end
 end
 
 class Round
@@ -64,9 +64,9 @@ class Round
 
 	def initialize(round_number, round_attributes)
 		@round_number = round_number
-		@round_attributes = { color: round_attributes[:color].sample, color_correct: nil, 
-													sound: round_attributes[:sound].sample, sound_correct: nil,
-													position: round_attributes[:position].sample, position_correct: nil
-												}
+		@round_attributes = { color: round_attributes[:color].sample, color_correct: nil,
+								sound: round_attributes[:sound].sample, sound_correct: nil,
+								position: round_attributes[:position].sample, position_correct: nil
+								}
 	end
 end
