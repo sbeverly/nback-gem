@@ -81,35 +81,27 @@ class DataFetcher
 	end
 
 	def fetch_game_data(game_mode)
+	      @colors_array = []
+	      @sounds_array = []
+	      @positions_array = [1,2,3,4];
 
-	       @colors_array = []
-	       @sounds_array = []
-	       @positions_array = [1,2,3,4];
-
-	       @total_stimuli = 4
-	       @stimuli_count = 1
-	       p game_data
-	       while @stimuli_count < @total_stimuli + 1
-	            @colors_array << game_data[:colors][@stimuli_count]
+	      @total_stimuli = 4
+	      @stimuli_count = 1
+	      while @stimuli_count < @total_stimuli + 1
+	      	@colors_array << game_data[:colors][@stimuli_count]
 	            @sounds_array << game_data[:sounds][@stimuli_count]
 	            @stimuli_count += 1
-	            p @colors_array
-	       end
+	      end
 
-	    #     if gameMode === 'Single'
-	    #         @round_attributes.positions = @positions_array
-	    #     } else if (gameMode === 'Dual') {
-	    #         this.soundBuilder.buildSounds(soundArr)
-	    #         return {positions: positionArr, sounds: soundArr}
-	    #     } else if (gameMode === 'Triple'){
-	    #         this.soundBuilder.buildSounds(soundArr)
-	    #         return {colors: colorArr, sounds: soundArr, positions: positionArr}
-	    #     }
-	    # },
+	      if game_mode == 'Single'
+	            @round_attributes[:positions] = @positions_array
+	      elsif game_mode == 'Dual'
+	            @round_attributes[:positions] = @positions_array
+	            @round_attributes[:sounds] = @sounds_array
+	      else game_mode === 'Triple'
+	            @round_attributes[:positions] = @positions_array
+	            @round_attributes[:sounds] = @sounds_array
+	            @round_attributes[:colors] = @colors_array
+	      end
 	  end
   end
-
-  game_data = {colors: {1 => 'red', 2 => 'green', 3 => 'yellow', 4 => 'orange'}, sounds: game_data = {colors: {1 => 'red', 2 => 'green', 3 => 'yellow', 4 => 'orange'}} }
-  data_fetcher = DataFetcher.new(game_data, 'Single')
-  data_fetcher.fetch_game_data('Single')
-
