@@ -6,10 +6,6 @@ class NbackGame
 		@rounds = []
 	end
 
-	def fetch_game_data(game_mode)
-
-	end
-
 	def generate_rounds
 		@round_number = 1
 		@n + 20.times do
@@ -74,3 +70,26 @@ class Round
 												}
 	end
 end
+
+class DataFetcher
+	attr_accessor :round_attributes, :game_data
+
+	def fetch_game_data(game_mode)
+	        @colors_array = []
+	        @sounds_arrat = []
+	        @positions_array = [1,2,3,4];
+	        for (var i = 1; i < 5; i++){
+	            colorArr.push(gameData.colors[i]);
+	            soundArr.push(gameData.sounds[i]);
+	        }
+	        if (gameMode === 'Single') {
+	            return {positions: positionArr}
+	        } else if (gameMode === 'Dual') {
+	            this.soundBuilder.buildSounds(soundArr)
+	            return {positions: positionArr, sounds: soundArr}
+	        } else if (gameMode === 'Triple'){
+	            this.soundBuilder.buildSounds(soundArr)
+	            return {colors: colorArr, sounds: soundArr, positions: positionArr}
+	        }
+	    },
+  end
